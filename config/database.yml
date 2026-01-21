@@ -1,0 +1,22 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { "password" } %>
+  host: db   # Tên service 'db' trong docker-compose.yml
+  port: 3306 # Cổng mặc định của MySQL
+
+development:
+  <<: *default
+  database: bk_job_api_development
+
+test:
+  <<: *default
+  database: bk_job_api_test
+
+production:
+  <<: *default
+  database: bk_job_api_production
+  # Trong production thường dùng biến môi trường để bảo mật
+  password: <%= ENV["BK_JOB_API_DATABASE_PASSWORD"] %>
