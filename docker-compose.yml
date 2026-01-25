@@ -18,6 +18,7 @@ services:
       - "3000:3000"
     environment:
       DATABASE_PASSWORD: password
+      DEVISE_JWT_SECRET_KEY: 35c20fc1fa04fe79660ba61ff15cf95cb6835e29eaf358a6e0539bfa6cbe3c63b9212e561b276f70b8d480a670817550e08156dd1b948a2d66bdc05a7479cb60
     depends_on:
       - db
   
