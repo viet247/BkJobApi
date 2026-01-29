@@ -3,10 +3,9 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
-  
+
   attr_accessor :reset_token
 
-  has_secure_password
   has_one_attached :my_cv
   
   has_many :applies, dependent: :destroy
@@ -26,7 +25,7 @@ class User < ApplicationRecord
   validates :login_id, presence: true, if: :admin?
 
   # define: 1 is candidate, 2 is admin
-  enum role: { candidate: 1, admin: 2 }
+  enum :role, { candidate: 1, admin: 2 }
   
   def create_reset_digest
     # tao chuoi ngau nhien
