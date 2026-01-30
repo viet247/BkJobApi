@@ -3,7 +3,7 @@ class Job < ApplicationRecord
     has_many :users, through: :applies
     has_many :favorites, dependent: :destroy
     has_many :favorite_users, through: :favorites, source: :user
-    has_many :histories # 1 job co mot danh sach cac lan duoc xem
+    has_many :histories, dependent: :destroy
   
     belongs_to :industry
     belongs_to :position, optional: true

@@ -5,22 +5,18 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   attr_accessor :reset_token
-
   has_one_attached :my_cv
   
   has_many :applies, dependent: :destroy
-  has_many :jobs, through: :applies
   has_many :jobs_applied, through: :applies, source: :job
   has_many :favorites, dependent: :destroy
   has_many :favorite_jobs, through: :favorites, source: :job
-  has_many :histories # 1 user co mot danh sach cac lan xem
-  belongs_to :company, optional: true
+  has_many :histories, dependent: :destroy
+  has_one :company
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, presence: true, confirmation: true, length: { minimum: 6 }, on: :create
-  validates :password_confirmation, presence: true, on: :create
   validates :login_id, uniqueness: { allow_nil: true }
   validates :login_id, presence: true, if: :admin?
 

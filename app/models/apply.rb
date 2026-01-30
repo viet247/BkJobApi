@@ -8,7 +8,6 @@ class Apply < ApplicationRecord
   # Validations
   validates :full_name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :job, :user, presence: true
   validates :user_id, uniqueness: { scope: :job_id }
 
   # Custom validation
