@@ -4,5 +4,5 @@ class Registration < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
-  scope :expired, -> { where(status: :pending).where('expires_at < ?', Time.current) }
+  scope :expired, -> { where(status: :pending).where("expires_at < ?", Time.current) }
 end

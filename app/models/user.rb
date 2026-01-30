@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   attr_accessor :reset_token
   has_one_attached :my_cv
-  
+
   has_many :applies, dependent: :destroy
   has_many :jobs_applied, through: :applies, source: :job
   has_many :favorites, dependent: :destroy
@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   # define: 1 is candidate, 2 is admin
   enum :role, { candidate: 1, admin: 2 }
-  
+
   def create_reset_digest
     # tao chuoi ngau nhien
     self.reset_token = SecureRandom.urlsafe_base64
