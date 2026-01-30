@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_21_030831) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_30_085026) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,7 +77,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_21_030831) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "fk_rails_a9088cf3a2"
-    t.index ["user_id"], name: "fk_rails_d15744e438"
+    t.index ["user_id", "job_id"], name: "index_favorites_on_user_id_and_job_id", unique: true
   end
 
   create_table "histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -133,7 +133,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_21_030831) do
     t.string "name", null: false
     t.string "address"
     t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "encrpyted_passwrod", null: false
     t.integer "role", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,6 +1,6 @@
 class City < ApplicationRecord
   before_save :set_slug
-  has_many :jobs, dependent: :nullfify
+  has_many :jobs, dependent: :destroy
   validates :name, presence: true
 
   private
