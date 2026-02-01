@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+ruby "3.3.0"
 gem "rails", "~> 8.0.4"
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
@@ -13,6 +14,7 @@ gem "devise"
 gem "devise-jwt"
 # Provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
 gem "rack-cors"
+gem "byebug"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

@@ -133,7 +133,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_30_085026) do
     t.string "name", null: false
     t.string "address"
     t.string "email", null: false
-    t.string "encrpyted_passwrod", null: false
+    t.string "encrypted_password", null: false
     t.integer "role", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
