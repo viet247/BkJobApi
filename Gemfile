@@ -14,6 +14,7 @@ gem "devise"
 gem "devise-jwt"
 # Provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
 gem "rack-cors"
+gem "byebug"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
