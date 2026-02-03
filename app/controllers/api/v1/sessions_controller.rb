@@ -9,7 +9,7 @@ class Api::V1::SessionsController < Devise::SessionsController
     if resource.persisted?
       render json: {
         status: { code: 200, message: 'Đăng nhập thành công.' },
-        data: resource
+        data: resource.as_json(only: [:id, :email, :name])
       }, status: :ok
     else
       render json: {
