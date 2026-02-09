@@ -3,6 +3,10 @@ class ApplicationController < ActionController::API
 
   before_action :configure_permitted_parameter, if: :devise_controller?
 
+  rescue_from Pagy::VariableError do |e|
+    render_error("pagination parameters invalid: #{e.getMessage}", :bad_request)
+  end
+
   def render_success(data, meta = nil, message = "Success")
     render json: {
       success: true,
@@ -24,5 +28,14 @@ class ApplicationController < ActionController::API
 
   def configure_permitted_parameter
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role])
+  end
+
+  private
+
+  def safe_page_params
+    page = param[:page].to_i
+    page > 0 ? page : 1
+  rescue
+    1
   end
 end

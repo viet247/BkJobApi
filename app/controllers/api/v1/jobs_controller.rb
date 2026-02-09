@@ -1,7 +1,7 @@
 class Api::V1::JobsController < ApplicationController
   def index
     begin
-      # @pagy, @jobs = pagy(Job.all.includes(:city, :company))
+      @pagy, @jobs = pagy(Job.all.includes(:city, :company), page: safe_page_params)
       serialized_jobs = ActiveModelSerializers::SerializableResource.new(@jobs, each_serializer: JobSerializer).as_json
       render_success(serialized_jobs, pagy_metadata(@pagy))
     rescue StandardError => e
