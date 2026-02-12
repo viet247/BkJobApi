@@ -15,8 +15,7 @@ gem "devise-jwt"
 # Provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
 gem "rack-cors"
 gem "byebug"
-gem 'pagy', '~> 9.0'
-gem 'active_model_serializers', '~> 0.10.0'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -52,8 +51,4 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-
-  gem 'rspec-rails', '~> 8.0.0'
-
-  gem 'factory_bot_rails'
 end

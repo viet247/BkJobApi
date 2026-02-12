@@ -13,9 +13,9 @@ Rails.application.routes.draw do
              },
              defaults: { format: :json }
 
-  namespace :api, defaults: { format: :json } do
-    namespace :v1 do
-      get '/jobs', to: 'jobs#index'
+  scope :api, defaults: { format: :json } do
+    scope :v1 do
+      # 
     end
   end
 end
