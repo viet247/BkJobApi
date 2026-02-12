@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameter, if: :devise_controller?
 
   rescue_from Pagy::VariableError do |e|
-    render_error("pagination parameters invalid: #{e.getMessage}", :bad_request)
+    render_error("Pagination parameters invalid: #{e.getMessage}", :bad_request)
   end
 
   def render_success(data, meta = nil, message = "Success")
