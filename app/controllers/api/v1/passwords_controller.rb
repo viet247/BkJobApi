@@ -10,4 +10,13 @@ class Api::V1::PasswordsController < Devise::PasswordsController
       render_error('Failed Request ', :unprocessable_entity, errors)
     end
   end
+
+  def update
+    self.resource = User.reset_password_by_token(resource_params)
+    if resource.errors.empty?
+      render_success(nil, nil, 'Password has updated successfully')
+    else
+      render_error('Password update failed', :unprocessable_entity, resource.errors.full_messages)
+    end
+  end
 end
