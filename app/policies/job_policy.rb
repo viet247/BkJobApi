@@ -19,7 +19,7 @@ class JobPolicy < ApplicationPolicy
     return true if admin?
 
     # Job model must have user_id
-    user.role == "recruiter" && user.id = record.user_id
+    user.role == "recruiter" && user.id == record.user_id
   end
 
   def destroy?

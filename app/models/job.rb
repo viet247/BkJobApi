@@ -9,6 +9,7 @@ class Job < ApplicationRecord
     belongs_to :position, optional: true
     belongs_to :city
     belongs_to :company
+    belongs_to :user
 
     validates :title, presence: true
     validates :salary, numericality: { greater_than: 0 }
