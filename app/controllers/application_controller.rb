@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::API
   include Pagy::Backend
-
+  include Pundit::Authorization
   before_action :configure_permitted_parameter, if: :devise_controller?
 
   rescue_from Pagy::VariableError do |e|
     render_error("Pagination parameters invalid: #{e.message}", :bad_request)
   end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def render_success(data, meta = nil, message = "Success")
     render json: {
@@ -27,7 +29,7 @@ class ApplicationController < ActionController::API
   protected
 
   def configure_permitted_parameter
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :role ])
   end
 
   private
@@ -37,5 +39,10 @@ class ApplicationController < ActionController::API
     page > 0 ? page : 1
   rescue
     1
+  end
+
+  def user_not_authorized(exception)
+    policy_name = exception.policy.class.to_s.underscore
+    render_error("Denied access at #{policy_name}.#{exception.query}", :forbidden)
   end
 end

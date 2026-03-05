@@ -12,6 +12,7 @@ gem "puma", ">= 5.0"
 
 gem "devise"
 gem "devise-jwt"
+gem "pundit"
 # Provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
 gem "rack-cors"
 gem "byebug"
