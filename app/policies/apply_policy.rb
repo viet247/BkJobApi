@@ -28,4 +28,15 @@ class ApplyPolicy < ApplicationPolicy
 
     user.role == "candidate" && user.id == resource.user_id
   end
+  class Scope < Scope
+    def resolve
+      if user.role == "admin"
+        scope.all
+      elsif user.role == "recruiter"
+        scope.joins(:jobs).where(jobs: { user_id: user.id })
+      else
+        scope.where(user_id: user.id)
+      end
+    end
+  end
 end

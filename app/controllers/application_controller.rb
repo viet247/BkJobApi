@@ -41,7 +41,8 @@ class ApplicationController < ActionController::API
     1
   end
 
-  def user_not_authorized
-    render_error("Unauthorized", :forbidden)
+  def user_not_authorized(exception)
+    policy_name = exception.policy.class.to_s.underscore
+    render_error("Denied access at #{policy_name}.#{exception.query}", :forbidden)
   end
 end
