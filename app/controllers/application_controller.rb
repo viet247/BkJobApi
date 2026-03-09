@@ -9,6 +9,8 @@ class ApplicationController < ActionController::API
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
   def render_success(data, meta = nil, message = "Success")
     render json: {
       success: true,
@@ -44,5 +46,9 @@ class ApplicationController < ActionController::API
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
     render_error("Denied access at #{policy_name}.#{exception.query}", :forbidden)
+  end
+
+  def render_not_found(exception)
+    render_error("#{exception.model} not found!", :not_found)
   end
 end
