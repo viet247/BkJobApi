@@ -5,7 +5,13 @@ class Api::V1::JobsController < ApplicationController
       serialized_jobs = ActiveModelSerializers::SerializableResource.new(@jobs, each_serializer: JobSerializer).as_json
       render_success(serialized_jobs, pagy_metadata(@pagy))
     rescue StandardError => e
-      render_error("Error occurred", :internal_server_error, [e.message])
+      render_error("Error occurred", :internal_server_error, [ e.message ])
     end
+  end
+
+  def show
+    @job = Job.find(params[:id])
+    serialized_job = ActiveModelSerializers::SerializableResource.new(@job, serializer: JobDetailSerializer).as_json
+    render_success(serialized_job)
   end
 end

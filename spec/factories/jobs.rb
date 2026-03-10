@@ -1,10 +1,11 @@
 FactoryBot.define do
   factory :job do
     sequence(:title) { |n| "Lập trình viên Ruby # {n}" }
-    description {"Lap trinh vien Ruby - Back end"}
+    description { "Lap trinh vien Ruby - Back end" }
     salary { 1000.50 }
 
     association :city
+    association :user
     association :company
     association :industry
   end
