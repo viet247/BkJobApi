@@ -14,4 +14,21 @@ class Api::V1::JobsController < ApplicationController
     serialized_job = ActiveModelSerializers::SerializableResource.new(@job, serializer: JobDetailSerializer).as_json
     render_success(serialized_job)
   end
+
+  def create
+    @job = Job.create(job_params)
+    if job
+      serialized_job = ActiveModelSerializers::SerializableResource.new(@job, serializer: JobDetailSerializer).as_json
+      render_success(serialized_job, "You've created job successfully")
+    else
+      render_error("You've  failed created job", :unprocessable_entity, @job.errors.full_messages)
+    end
+  end
+
+  private
+
+  def job_params
+    # Need to modify
+    params.require(:users).permit(:title, :description, :salary, :industry_id, :company_id, :city_id, :user_id)
+  end
 end
