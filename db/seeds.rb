@@ -115,6 +115,7 @@ job_titles = [
   industry = industries.sample
   company = companies.sample
   position = positions.sample # Lấy ngẫu nhiên 1 position
+  user = dummy_hr
 
   Job.create!(
     title: "#{job_titles.sample} (#{position.title})",
@@ -125,7 +126,8 @@ job_titles = [
     city: city,
     industry: industry,
     company: company,
-    position: position
+    position: position,
+    user: user
   )
 end
 
