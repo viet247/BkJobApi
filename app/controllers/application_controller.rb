@@ -11,13 +11,13 @@ class ApplicationController < ActionController::API
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
-  def render_success(data, meta = nil, message = "Success")
+  def render_success(data: nil, meta: nil, message: "Success", status: :ok)
     render json: {
       success: true,
       message: message,
       data: data,
       meta: meta
-    }, status: :ok
+    }, status: status
   end
 
   def render_error(message = "Error", status = :bad_request, errors = [])
